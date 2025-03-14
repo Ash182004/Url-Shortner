@@ -8,7 +8,7 @@ const app=express();
 const cors = require('cors');
 app.use(cors());
 
-const PORT=8003;
+const PORT=process.env.PORT||8003;
 app.set("view engine","ejs");
 app.set("views",path.resolve('./views'));
 app.set();
