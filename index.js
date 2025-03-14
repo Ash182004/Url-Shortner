@@ -5,6 +5,9 @@ const urlRoute=require("./routes/url.js");
 const {connectToMongoDB}=require("./connect.js");
 const staticRoute=require('./routes/staticRouter.js');
 const app=express();
+const cors = require('cors');
+app.use(cors());
+
 const PORT=8003;
 app.set("view engine","ejs");
 app.set("views",path.resolve('./views'));
@@ -20,4 +23,4 @@ connectToMongoDB(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/mydb')
 app.use("/url",urlRoute);
 app.use("/",staticRoute);
 
-app.listen(PORT,()=>console.log(`server started at ${PORT}`));
+app.listen(PORT,'0.0.0.0',()=>console.log(`server started at ${PORT}`));
