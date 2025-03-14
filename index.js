@@ -1,5 +1,6 @@
 const express=require('express');
 const path=require('path');
+require('dotenv').config();
 const urlRoute=require("./routes/url.js");
 const {connectToMongoDB}=require("./connect.js");
 const staticRoute=require('./routes/staticRouter.js');
@@ -14,7 +15,7 @@ app.use(express.urlencoded({extended:false}));
    
 //     return res.render('home');
 // })
-connectToMongoDB("mongodb://127.0.0.1:27017/shortUrl")
+connectToMongoDB(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/mydb')
 .then(()=>console.log("mongodb is connected"));
 app.use("/url",urlRoute);
 app.use("/",staticRoute);
