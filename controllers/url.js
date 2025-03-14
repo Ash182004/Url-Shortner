@@ -4,7 +4,7 @@ const URL=require('../models/url.js');
 async function handleGenerateNewShortURL(req, res) {
     const body = req.body;
     if (!body.url) {
-        return res.render("home", { id: null, error: "URL is required" }); // ✅ Always pass error
+        return res.render("Home", { id: null, error: "URL is required" }); // ✅ Always pass error
     }
 
     let shortId = shortid.generate();
@@ -15,10 +15,10 @@ async function handleGenerateNewShortURL(req, res) {
             redirectUrl: body.url,
             visitHistory: [],
         });
-        return res.render("home", { id: newUrl.shortId,urls: [],originalUrl: body.url, error:null }); // ✅ Pass error as null
+        return res.render("Home", { id: newUrl.shortId,urls: [],originalUrl: body.url, error:null }); // ✅ Pass error as null
     } catch (error) {
         console.error("Error creating short URL:", error);
-        return res.render("home", { id: null, error: "Failed to generate short URL. Try again." });
+        return res.render("Home", { id: null, error: "Failed to generate short URL. Try again." });
     }
 }
 
